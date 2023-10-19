@@ -2,7 +2,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { type User } from './types'
 import './App.css'
-import axios from 'axios'
+
 
 type sorting = 'none' | 'firstname' | 'lastname' | 'country'
 
@@ -11,7 +11,6 @@ function App() {
   const [sorting, setSorting] = useState<sorting>('none');
   //const [originalUsers, setOriginalUsers] = useState<User[]>([])
   const [isRowColored, setIsRowColored] = useState(false);
-  const [isSortedByCountry, setIsSortedByCountry] = useState(false);
   const [filterCountry, setFilterCountry] = useState('');
 
   const originalUsers = useRef<User[]>([])
@@ -70,7 +69,7 @@ function App() {
       <div className='container flex flex-col items-center gap-8'>
         <div className='flex flex-row items-center gap-4'>
             <button className={`bg-sky-500 p-4 rounded-lg text-slate-50 font-bold ${isRowColored ? 'outline outline-offset-2 outline-4 outline-blue-500' : ''}`} onClick={()=>{setIsRowColored(!isRowColored)}}>Color the Rows</button>
-            <button className={`bg-sky-500 p-4 rounded-lg text-slate-50 font-bold ${isSortedByCountry ? 'outline outline-offset-2 outline-4 outline-blue-500' : ''}`} onClick={toggleSortByCountry}>Sort By Country</button>
+            <button className={`bg-sky-500 p-4 rounded-lg text-slate-50 font-bold`} onClick={toggleSortByCountry}>Sort By Country</button>
             <button className='bg-sky-500 p-4 rounded-lg text-slate-50 font-bold' onClick={()=>{setUsers(originalUsers.current)}}>Go back to initial state</button>
             <input className='border-2 border-black p-2' placeholder='Search by country' type="text" name="" id="" onChange={(e)=>{setFilterCountry(e.target.value)}} />
         </div>
